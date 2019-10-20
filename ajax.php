@@ -261,7 +261,7 @@ if($session->issetLogin() || $loggedOut){
                 $title = _('Credits');
                 $text = '';
                 
-                $text .= '<p><span class=\"credit-category\">'._('Developer').'</span><br/><span class=\"credit-sole\"><a href=\"http://fb.com/RenatoMassaro\">Renato Massaro</a></span></p>';
+                $text .= '<p><span class=\"credit-category\">'._('Original Developer').'</span><br/><span class=\"credit-sole\"><a href=\"http://fb.com/RenatoMassaro\">Renato Massaro</a></span></p>';
                 $text .= '<p><span class=\"credit-category\">'._('Game Designer').'</span><br/><span class=\"credit-sole\"><a href=\"http://fb.com/RenatoMassaro\">Renato Massaro</a></span></p>';
                 $text .= '<p><span class=\"credit-category\">'._('System Administrator').'</span><br/><span class=\"credit-sole\"><a href=\"http://fb.com/RenatoMassaro\">Renato Massaro</a></span></p>';
                 $text .= '<p><span class=\"credit-category\">'._('Design').'</span><br/>';

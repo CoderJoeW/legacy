@@ -40,10 +40,6 @@ if($_SERVER['REQUEST_METHOD'] != 'POST' && !isset($_GET['code'])){
     ?>
 
     <!DOCTYPE html>
-    <!--
-        Hello, is it me you're looking for?
-        www.renatomassaro.com
-    -->
     <html lang="en">
         <head>
             <meta charset="utf-8">
@@ -80,10 +76,6 @@ if($_SERVER['REQUEST_METHOD'] != 'POST' && !isset($_GET['code'])){
             <script src="js/jquery.min.js"></script>
             <script src="js/welcome.js"></script>
         </body>
-    <!--
-        Hello! I've just got to let you know.
-        www.neoartgames.com
-    -->
     </html>
 
 <?php

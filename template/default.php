@@ -120,10 +120,6 @@ if(isset($_SESSION['TYP'])){
 
 ?>
 <!DOCTYPE html>
-<!--
-    Hello, is it me you're looking for?
-    www.renatomassaro.com
--->
 <html lang="en">
     <head>
         <title>Hacker Experience</title>
@@ -450,7 +446,6 @@ if($msgRegister){
                         <a href="https://facebook.com/HackerExperience"><i class="fa fa-facebook-square"></i></a>
                         <a href="https://twitter.com/HackerExp"><i class="fa fa-twitter"></i></a>
                         <a href="https://plus.google.com/105485198485447624885" rel="publisher"><i class="fa fa-google-plus"></i></a>
-                        <a href="https://renatomassaro.com"><i class="fa fa-user"></i></a>
                     </div>
                 </div>
             </div>
@@ -475,8 +470,4 @@ if($msgRegister){
         <script src="js/jquery-ui.js"></script>
         <script src="js/he_index.js"></script>
     </body>
-<!--
-    Hello! I've just got to let you know.
-    www.neoartgames.com
--->
 </html>

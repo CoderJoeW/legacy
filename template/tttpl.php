@@ -154,10 +154,6 @@ if(isset($_POST['ttuser']) || isset($_POST['predefined'])){
 
 ?>
 <!DOCTYPE html>
-<!--
-    Hello, is it me you're looking for?
-    www.renatomassaro.com
--->
 <html lang="en">
     <head>
         <meta charset="utf-8">

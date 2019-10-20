@@ -322,10 +322,6 @@ if($crudePage == 'internet'){
 }
 ?>
     </body>
-<!--
-    Hello! I've just got to let you know.
-    www.neoartgames.com
--->
 </html>
 <?php
 
