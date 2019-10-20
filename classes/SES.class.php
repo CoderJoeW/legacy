@@ -1,5 +1,8 @@
 <?php
 
+// TODO REIMPLEMENT EMAIL SEND
+
+/*
 require '/var/www/ses/aws-autoloader.php';
 use Aws\Ses\SesClient;
 
@@ -193,5 +196,5 @@ class SES {
 //$ses = new SES();
 //
 //$ses->send('verify', Array('to' => 'renatosmassaro@gmail.com', 'user' => 'renato', 'key' => 'test'));
-
+*/
 ?>

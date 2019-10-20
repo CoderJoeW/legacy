@@ -43,9 +43,12 @@ class EmailVerification {
             return FALSE;
         }        
         
+        // 2019: TODO REIMPLEMENT EMAIL SEND
+        /*
         require '/var/www/classes/SES.class.php';            
         $ses = new SES();
-        return $ses->send('verify', Array('to' => $email, 'user' => $username, 'key' => $this->code));        
+        return $ses->send('verify', Array('to' => $email, 'user' => $username, 'key' => $this->code));
+        */       
     }
     
     private function issetCode($userID){
@@ -84,9 +87,12 @@ class EmailVerification {
         $stmt->execute(array(':userID' => $userID));
         $userInfo = $stmt->fetch(PDO::FETCH_OBJ);
         
+        // TODO REIMPLEMENT EMAIL SEND
+        /*
         require '/var/www/classes/SES.class.php';            
         $ses = new SES();
         $ses->send('welcome', Array('to' => $userInfo->email, 'user' => $userInfo->login));
+        */
         
         $this->session->newQuery();
         $sql = 'DELETE FROM email_verification WHERE userID = '.$userID;

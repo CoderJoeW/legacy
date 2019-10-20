@@ -280,10 +280,7 @@ class Premium {
         $sqlSelect = "SELECT lang FROM users_language WHERE userID = $id LIMIT 1";
         $userLang = $this->pdo->query($sqlSelect)->fetch(PDO::FETCH_OBJ)->lang;
         
-        require '/var/www/classes/SES.class.php';            
-        $ses = new SES();
-        $ses->send('premium_refused', Array('to' => $playerInfo->email, 'user' => $playerInfo->login, 'reason' => $reason, 'paid' => $price, 'plan' => $duration), $userLang);
-        
+        TODO
     }
     
     public function playerHasPayment($uid = ''){
