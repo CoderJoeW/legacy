@@ -777,20 +777,12 @@ require 'html/fame/'. ($this->curRound - 1) .'_'.$pathName.'_preview.html';
 
                                 <div class="span7">        
                                     
-                                    <?php
-                                    self::forum_show('recent_comments');
-                                    ?>
-                                    
+
                                 </div>
                                     
                                 <div class="span5">
                                 
-                                    <?php
-                                    self::forum_show('recent_posts');
-                                    
-                                    self::forum_show('announcements');
-                                    
-                                    ?>                                    
+                             
                                     
                                 </div>
                                 

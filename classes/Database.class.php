@@ -12,7 +12,6 @@ class LRSys {
     private $lang;
     private $pdo;
     private $process;
-    private $forum;
 
     private $log;
     private $ranking;
@@ -76,9 +75,6 @@ class LRSys {
 
             $gameIP = $gameIP1 . '.' . $gameIP2 . '.' . $gameIP3 . '.' . $gameIP4;
 
-            require '/var/www/classes/Forum.class.php';
-            $forum = new Forum();
-
             require '/var/www/classes/Python.class.php';
             
             $python = new Python();
@@ -107,8 +103,6 @@ class LRSys {
             $finances = new Finances();
             
             $finances->createAccount($regInfo->id);
-
-            $forum->externalRegister($this->user, $this->pass, $this->email, $regInfo->id);
             
             $sql = "INSERT INTO stats_register (userID, ip) VALUES ('".$regInfo->id."', '".$_SERVER['REMOTE_ADDR']."')";
             $this->pdo->query($sql);
@@ -272,11 +266,6 @@ class LRSys {
                     } else {
                         $premium = 0;
                     }
-
-                    require '/var/www/classes/Forum.class.php';
-                    $forum = new Forum();
-
-                    $forum->login($this->user, $this->pass, TRUE);
                     
                     $this->session->loginSession($dados['0']['id'], $this->user, $premium, $special);
 
