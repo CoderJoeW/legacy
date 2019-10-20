@@ -3,6 +3,8 @@
 // 2019: This script ends the round. It is also called from within the game.
 // 2019: Before removing the exit below, make sure to not allow anyone to externally (remotely) execute this script.
 
+// CHANGE TO ABOLUTE PATH WHEN NECESSARY
+
 exit();
 exec('/bin/sh ../cron2/updateStatsAndRanking.sh');
 
@@ -73,7 +75,7 @@ function getExtension($softType) {
 
  }
 
-require_once '/var/www/classes/PDO.class.php';
+require_once '../classes/PDO.class.php';
 $pdo = PDO_DB::factory();
 
 $start = microtime(true);

@@ -1,10 +1,10 @@
 <?php
 
 require 'config.php';
-require '/var/www/classes/Session.class.php';
-require '/var/www/classes/Player.class.php';
-require '/var/www/classes/Storyline.class.php';
-require '/var/www/classes/News.class.php';
+require 'classes/Session.class.php';
+require 'classes/Player.class.php';
+require 'classes/Storyline.class.php';
+require 'classes/News.class.php';
 
 $session = new Session();
 $system = new System();

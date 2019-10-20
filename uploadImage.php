@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         if(getimagesize($_FILES['image_upload']['tmp_name']) !== FALSE){
 
-            require_once '/var/www/classes/PDO.class.php';
+            require_once 'classes/PDO.class.php';
             $pdo = PDO_DB::factory();
 
             if(!isset($_POST['t'])){
@@ -81,21 +81,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 
             }
 //
-//            require '/var/www/classes/Images.class.php';
+//            require 'classes/Images.class.php';
 //            $images = new Images();
 //
 //            $images->load($_FILES['image_upload']['tmp_name']);
-//            $images->save('/var/www/'.$dir.$filename.'.jpg');
+//            $images->save(''.$dir.$filename.'.jpg');
 //
 //            if($dir2 != ''){
 //
 //                $images->load($_FILES['image_upload']['tmp_name']);
 //                $images->resize(38, 38);
-//                $images->save('/var/www/'.$dir2.$filename.'.jpg');
+//                $images->save(''.$dir2.$filename.'.jpg');
 //
 //                $images->load($_FILES['image_upload']['tmp_name']);
 //                $images->resize(60, 60);
-//                $images->save('/var/www/'.$dir3.$filename.'.jpg');
+//                $images->save(''.$dir3.$filename.'.jpg');
 //
 //            }
 ////            
@@ -130,13 +130,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
             $imagick = new Imagick($tmpFile);
             autoRotateImage($imagick);
-            $imagick->writeImage('/var/www/'.$dir.$filename.'.jpg'); 
+            $imagick->writeImage(''.$dir.$filename.'.jpg'); 
 
             if($dir2 != ''){
                 
-                $imagick = new Imagick('/var/www/'.$dir.$filename.'.jpg');
+                $imagick = new Imagick(''.$dir.$filename.'.jpg');
                 $imagick->cropthumbnailimage(60, 60);
-                $imagick->writeImage('/var/www/'.$dir2.$filename.'.jpg');
+                $imagick->writeImage(''.$dir2.$filename.'.jpg');
 
             }
                         

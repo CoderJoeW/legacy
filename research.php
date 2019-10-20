@@ -2,12 +2,12 @@
 die("DEPRECATED");
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
-    require '/var/www/classes/Session.class.php';
-    require '/var/www/classes/Player.class.php';
-    require '/var/www/classes/PC.class.php';
-    require '/var/www/classes/Finances.class.php';
-    require '/var/www/classes/Ranking.class.php';
-    require '/var/www/classes/Process.class.php';
+    require 'classes/Session.class.php';
+    require 'classes/Player.class.php';
+    require 'classes/PC.class.php';
+    require 'classes/Finances.class.php';
+    require 'classes/Ranking.class.php';
+    require 'classes/Process.class.php';
     
     $software = new SoftwareVPC();
     $finances = new Finances();

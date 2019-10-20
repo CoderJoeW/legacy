@@ -160,7 +160,7 @@ class Premium {
         }
         
         
-        require_once '/var/www/classes/Player.class.php';
+        require_once 'Player.class.php';
         $player = new Player();
         
         if(!$player->isPremium($id)){
@@ -205,12 +205,12 @@ class Premium {
         $sqlSelect = "SELECT lang FROM users_language WHERE userID = $id LIMIT 1";
         $userLang = $this->pdo->query($sqlSelect)->fetch(PDO::FETCH_OBJ)->lang;
         
-        require '/var/www/classes/SES.class.php';            
+        require 'SES.class.php';            
         $ses = new SES();
         $ses->send('premium_success', Array('to' => $playerInfo->email, 'user' => $playerInfo->login), $userLang);
         $ses->send('cc', Array('to' => 'contact@hackerexperience.com',  'id' => $id));
         
-        require '/var/www/classes/Social.class.php';
+        require 'Social.class.php';
         $social = new Social();
 
         //add badge 'premium'
@@ -271,7 +271,7 @@ class Premium {
         
         self::getPlanInfo($id);
         
-        require_once '/var/www/classes/Player.class.php';
+        require_once 'Player.class.php';
         $player = new Player();
         
         $playerInfo = $player->getPlayerInfo($id);

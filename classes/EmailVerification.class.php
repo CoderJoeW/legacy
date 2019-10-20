@@ -45,7 +45,7 @@ class EmailVerification {
         
         // 2019: TODO REIMPLEMENT EMAIL SEND
         /*
-        require '/var/www/classes/SES.class.php';            
+        require 'SES.class.php';            
         $ses = new SES();
         return $ses->send('verify', Array('to' => $email, 'user' => $username, 'key' => $this->code));
         */       
@@ -89,7 +89,7 @@ class EmailVerification {
         
         // TODO REIMPLEMENT EMAIL SEND
         /*
-        require '/var/www/classes/SES.class.php';            
+        require 'SES.class.php';            
         $ses = new SES();
         $ses->send('welcome', Array('to' => $userInfo->email, 'user' => $userInfo->login));
         */

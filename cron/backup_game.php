@@ -1,5 +1,8 @@
 <?php
 
+// TODO: REIMPLEMENT BACKUPS
+
+/*
 require '/var/www/ses/aws-autoloader.php';
 
 use Aws\S3\S3Client;
@@ -31,5 +34,5 @@ $h = date('H');
         'Key'    => '/'.date('Y').'/'.date('m').'/'.date('d').'/'.date('Ymd-Hi').'_game',
         'SourceFile' => '/var/web/backup/game/'.$name.'.sql'
     ));
-    
+    */
 ?>

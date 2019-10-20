@@ -1,6 +1,6 @@
 <?php
 
-require_once '/var/www/classes/Player.class.php';
+require_once 'Player.class.php';
 
 class Ranking extends Player {
     
@@ -77,7 +77,7 @@ class Ranking extends Player {
                         $system->handleError('Invalid bank account.', $redirect);
                     }
                     
-                    require '/var/www/classes/Finances.class.php';
+                    require 'Finances.class.php';
                     $finances = new Finances();
 
                     if($finances->totalMoney() < $price){
@@ -532,7 +532,7 @@ class Ranking extends Player {
         $this->session->certSession($this->session->getCert() + 1);
         
         if($this->session->getCert() == 5){
-            require '/var/www/classes/Social.class.php';
+            require 'Social.class.php';
             $social = new Social();
             $social->badge_add(54, $_SESSION['id']);
         }
@@ -574,7 +574,7 @@ class Ranking extends Player {
         
         if($cid == 2){
             
-            require '/var/www/classes/Storyline.class.php';
+            require 'Storyline.class.php';
             $storyline = new Storyline();
             
             $storyline->tutorial_start();
@@ -656,7 +656,7 @@ class Ranking extends Player {
         
         if(sizeof($data) == 1){
             
-            require_once '/var/www/classes/Pagination.class.php';
+            require_once 'Pagination.class.php';
             $pagination = new Pagination();
 
             $pagination->paginate('', $pagStr, 50, $page, 1);

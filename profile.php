@@ -1,9 +1,9 @@
 <?php
-require '/var/www/classes/Session.class.php';
+require 'classes/Session.class.php';
 require 'config.php';
-require '/var/www/classes/Social.class.php';
-require '/var/www/classes/System.class.php';
-require_once '/var/www/classes/Player.class.php';
+require 'classes/Social.class.php';
+require 'classes/System.class.php';
+require_once 'classes/Player.class.php';
 
 $session = new Session();
 $system = new System();
@@ -274,7 +274,7 @@ if($profileInfo['VALID_ID'] == 1){
                                             
                                             $social->friend_add($requestInfo['GET_VALUE'], $friendInfo['GET_VALUE']);
                                                                                         
-                                            require '/var/www/classes/Python.class.php';
+                                            require 'classes/Python.class.php';
                                             $python = new Python();
                                             
                                             $python->generateProfile($friendInfo['GET_VALUE']);

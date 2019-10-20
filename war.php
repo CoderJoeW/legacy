@@ -1,12 +1,12 @@
 <?php
 
 
-require '/var/www/classes/Player.class.php';
+require 'classes/Player.class.php';
 require 'config.php';
-require '/var/www/classes/Session.class.php';
-require '/var/www/classes/PC.class.php';
-require '/var/www/classes/System.class.php';
-require '/var/www/classes/Process.class.php';
+require 'classes/Session.class.php';
+require 'classes/PC.class.php';
+require 'classes/System.class.php';
+require 'classes/Process.class.php';
 
 $session = new Session();
 $system = new System();
@@ -22,7 +22,7 @@ require_once 'gameInfo.php';
 
 if($session->issetLogin()){
 
-    require_once '/var/www/classes/Storyline.class.php';
+    require_once 'classes/Storyline.class.php';
     $storyline = new Storyline();
     
     $storylineProgress = $storyline->returnStorylineProgress();

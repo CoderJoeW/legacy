@@ -1,6 +1,6 @@
 <?php
 
-require '/var/www/classes/PDO.class.php';
+require 'PDO.class.php';
 
 class Session {
 

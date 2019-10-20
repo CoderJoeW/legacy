@@ -27,11 +27,11 @@ class LRSys {
         $this->session = new Session();
 
 
-        require '/var/www/classes/Player.class.php';
-        require '/var/www/classes/PC.class.php';
-        require '/var/www/classes/Ranking.class.php';
-        require '/var/www/classes/Storyline.class.php';
-        require '/var/www/classes/Clan.class.php';
+        require 'Player.class.php';
+        require 'PC.class.php';
+        require 'Ranking.class.php';
+        require 'Storyline.class.php';
+        require 'Clan.class.php';
 
         $this->log = new LogVPC();
         $this->ranking = new Ranking();
@@ -75,7 +75,7 @@ class LRSys {
 
             $gameIP = $gameIP1 . '.' . $gameIP2 . '.' . $gameIP3 . '.' . $gameIP4;
 
-            require '/var/www/classes/Python.class.php';
+            require 'Python.class.php';
             
             $python = new Python();
             $python->createUser($this->user, $hash, $this->email, $gameIP);
@@ -90,7 +90,7 @@ class LRSys {
                 return FALSE;
             }
 
-            require '/var/www/classes/EmailVerification.class.php';
+            require 'EmailVerification.class.php';
             $EmailVerification = new EmailVerification();
             
             if(!$EmailVerification->sendMail($regInfo->id, $this->email, $this->user)){
@@ -99,7 +99,7 @@ class LRSys {
                 //TODO: report to admin
             }
             
-            require '/var/www/classes/Finances.class.php';
+            require 'Finances.class.php';
             $finances = new Finances();
             
             $finances->createAccount($regInfo->id);
@@ -206,7 +206,7 @@ class LRSys {
             $this->session = new Session();
         }
         
-        require_once '/var/www/classes/Mission.class.php';        
+        require_once 'Mission.class.php';        
         
         $this->mission = new Mission();
 
@@ -319,7 +319,7 @@ class LRSys {
             $this->pdo->query($sql);
         }
         
-        require_once '/var/www/classes/RememberMe.class.php';
+        require_once 'RememberMe.class.php';
         $key = pack("H*", 'REDACTED');
         $rememberMe = new RememberMe($key, $this->pdo);
         $rememberMe->remember($id, false, $this->keepalive);

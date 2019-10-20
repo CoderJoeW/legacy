@@ -1,9 +1,9 @@
 <?php
 
 require 'config.php';
-require '/var/www/classes/Session.class.php';
-require '/var/www/classes/Player.class.php';
-require '/var/www/classes/System.class.php';
+require 'classes/Session.class.php';
+require 'classes/Player.class.php';
+require 'classes/System.class.php';
 
 $session = new Session();
 $system = new System();

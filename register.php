@@ -1,6 +1,6 @@
 <?php
 
-require '/var/www/classes/Session.class.php';
+require 'classes/Session.class.php';
 $session = new Session();
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST' || $session->issetLogin()) {
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || $session->issetLogin()) {
     
 }
 
-require '/var/www/classes/Database.class.php';
+require 'classes/Database.class.php';
 
 $regLogin = $_POST['username'];
 $regPass = $_POST['password'];

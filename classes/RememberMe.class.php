@@ -161,10 +161,10 @@ class RememberMe {
 
         if ($data) {
 
-            require '/var/www/classes/Database.class.php';
+            require 'Database.class.php';
             $database = new LRSys();
             
-            require_once '/var/www/classes/Player.class.php';
+            require_once 'Player.class.php';
             $player = new Player();
 
             if($player->verifyID($data['user'])){
