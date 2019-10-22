@@ -2,15 +2,11 @@
 
 require 'classes/Session.class.php';
 require 'classes/Ranking.class.php';
-require 'classes/Forum.class.php';
 
 $session  = new Session();
 $ranking = new Ranking();
-$forum = new Forum();
 
 $ranking->updateTimePlayed();
-
-$forum->logout();
 
 
 $session->logout();

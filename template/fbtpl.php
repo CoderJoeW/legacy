@@ -155,10 +155,7 @@ if(isset($_POST['fbuser']) || isset($_POST['predefined'])){
 
                 $gameIP = $gameIP1 . '.' . $gameIP2 . '.' . $gameIP3 . '.' . $gameIP4;    
 
-                $python->createUser($name, 0, $email, $gameIP, $user, 'facebook');
-                
-                require '../classes/Forum.class.php';
-                $forum = new Forum();                
+                $python->createUser($name, 0, $email, $gameIP, $user, 'facebook');           
                 
                 $sql = 'SELECT COUNT(*) AS total, id FROM users WHERE login = \''.$name.'\' LIMIT 1';
                 $regInfo = $pdo->query($sql)->fetch(PDO::FETCH_OBJ);
@@ -167,8 +164,6 @@ if(isset($_POST['fbuser']) || isset($_POST['predefined'])){
                 
                     require '../classes/Finances.class.php';
                     $finances = new Finances();
-
-                    $forum->externalRegister($name, 'special_fb', 'facebook_login', $regInfo->id);
                     
                     $finances->createAccount($regInfo->id);                    
                     

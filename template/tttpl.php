@@ -118,9 +118,6 @@ if(isset($_POST['ttuser']) || isset($_POST['predefined'])){
 
             $python->createUser($name, 0, 0, $gameIP, $userID, 'twitter');
             
-            require '../classes/Forum.class.php';
-            $forum = new Forum();
-            
             $sql = 'SELECT COUNT(*) AS total, id FROM users WHERE login = \''.$name.'\' LIMIT 1';
             $regInfo = $pdo->query($sql)->fetch(PDO::FETCH_OBJ);
 
@@ -130,8 +127,6 @@ if(isset($_POST['ttuser']) || isset($_POST['predefined'])){
                 $finances = new Finances();
 
                 $finances->createAccount($regInfo->id);
-                
-                $forum->externalRegister($name, 'special_tt', 'twitter_login', $regInfo->id);
 
                 unset($_SESSION['SPECIAL_ID']);
                 $_SESSION['TTLOGIN'] = TRUE;
