@@ -457,7 +457,7 @@ if($msgRegister){
                 <div class="three columns">
                     <span id="hand" class="footer-social left small" style="margin-left: 35%;"><?php echo _('Handcrafted in Brazil'); ?></span>
                 </div>
-                <h3 id="neoart" class="footer-title right">2014 &copy; <a href="#" style="color: #fff; margin-right: 10px;">NeoArt Labs</a></h3>
+                <h3 id="neoart" class="footer-title right">2013 ~ 2019 &copy; <a href="#" style="color: #fff; margin-right: 10px;">HE Community</a></h3>
                 
             </div>
 
