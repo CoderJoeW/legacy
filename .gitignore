@@ -1,4 +1,3 @@
 forum/cache/*
 /wiki/conf/*
-
-.vscode
+.idea/*
