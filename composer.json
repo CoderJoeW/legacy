@@ -14,7 +14,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "HE\\": "src/Application/"
+            "HE\\": "src/"
         }
     },
     "minimum-stability": "dev",
