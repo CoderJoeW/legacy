@@ -6,7 +6,7 @@
 
 $start = microtime(true);
 
-require '/var/www/classes/PDO.class.php';
+require '../classes/PDO.class.php';
 
 $pdo = PDO_DB::factory();
 
@@ -230,7 +230,7 @@ if($total > 0){
                 $sqlMail = $pdo->prepare($sql);
                 $sqlMail->execute(array($from, $to, $type, $subject, $text));
                 
-                exec('/usr/bin/env python /var/www/python/badge_add.py user '.$to.' 60');
+                exec('/usr/bin/env python /var/www/python/badge_add.py user '.$to.' 60'); // CHANGE TO ABSOLUTE GAME PATH
                 
             }
             
@@ -239,8 +239,8 @@ if($total > 0){
         $sql = "DELETE FROM clan_ddos WHERE (attackerClan = '".$winnerID."' AND victimClan = '".$loserID."') OR (attackerClan = '".$loserID."' AND victimClan = '".$winnerID."')";
         $pdo->query($sql);
         
-        exec('/usr/bin/env python /var/www/python/badge_add.py user '.$mostInfluentID.' 61');
-        exec('/usr/bin/env python /var/www/python/badge_add.py user '.$mostInfluentID.' 71');
+        exec('/usr/bin/env python /var/www/python/badge_add.py user '.$mostInfluentID.' 61'); // CHANGE TO ABSOLUTE GAME PATH
+        exec('/usr/bin/env python /var/www/python/badge_add.py user '.$mostInfluentID.' 71'); // CHANGE TO ABSOLUTE GAME PATH
         
     }
     

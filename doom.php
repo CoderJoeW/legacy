@@ -1,9 +1,9 @@
 <?php
 
-require '/var/www/classes/Session.class.php';
-require '/var/www/classes/System.class.php';
-require '/var/www/classes/Storyline.class.php';
-require '/var/www/classes/Process.class.php';
+require 'classes/Session.class.php';
+require 'classes/System.class.php';
+require 'classes/Storyline.class.php';
+require 'classes/Process.class.php';
 
 $session = new Session();
 $system = new System();

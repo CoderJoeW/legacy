@@ -20,15 +20,15 @@ class Internet {
 
     function __construct() {
 
-        require_once '/var/www/classes/Player.class.php';
-        require_once '/var/www/classes/Session.class.php';
-        require_once '/var/www/classes/System.class.php';
-        require_once '/var/www/classes/PC.class.php';
-        require_once '/var/www/classes/Process.class.php';
-        require_once '/var/www/classes/NPC.class.php';
-        require_once '/var/www/classes/List.class.php';
-        require_once '/var/www/classes/Finances.class.php';
-        require_once '/var/www/classes/Ranking.class.php';
+        require_once 'Player.class.php';
+        require_once 'Session.class.php';
+        require_once 'System.class.php';
+        require_once 'PC.class.php';
+        require_once 'Process.class.php';
+        require_once 'NPC.class.php';
+        require_once 'List.class.php';
+        require_once 'Finances.class.php';
+        require_once 'Ranking.class.php';
 
         $this->pdo = PDO_DB::factory();
         $this->player = new Player();
@@ -984,7 +984,7 @@ if($xpDisable){
 
                                                         if ($this->session->issetMissionSession()) {
 
-                                                            require_once '/var/www/classes/Mission.class.php';
+                                                            require_once 'Mission.class.php';
                                                             $this->mission = new Mission();
 
                                                             if ($this->mission->issetMission($_SESSION['MISSION_ID'])) {
@@ -1177,7 +1177,7 @@ if($xpDisable){
 
                 if(isset($_SESSION['MISSION_ID'])){
                     if($_SESSION['MISSION_TYPE'] == 81){
-                        require '/var/www/classes/Mission.class.php';
+                        require 'Mission.class.php';
                         $mission = new Mission();
                         
                         $mission->tutorial_update(82);
@@ -1406,7 +1406,7 @@ if($xpDisable){
                                                                 $npcInfo = self::gatherInfo($ip);
                                                                 if($npcInfo['NPCTYPE'] == 10){
 
-                                                                    require_once '/var/www/classes/Clan.class.php';
+                                                                    require_once 'Clan.class.php';
                                                                     $clan = new Clan();
 
                                                                     if($clan->playerHaveClan()){
@@ -1628,7 +1628,7 @@ if($xpDisable){
                                 $this->system->handleError('No can do', 'internet');
                             }
                             
-                            require '/var/www/classes/Riddle.class.php';
+                            require 'Riddle.class.php';
                             $riddle = new Riddle();
 
                             $riddle->show($hackedInfo['0']['id'], $_SESSION['LOGGED_IN']);
@@ -2656,7 +2656,7 @@ if($xpDisable){
                             $scriptStr .= 'var dctitle = "'._('Download more softwares.').'";var dcdesc="'._('Need more softwares? You might want to take a look at the ').'<a class=\"notify-link\" href=\"internet?ip='.$dcIP.'\">'._('Download Center').'</a>.'.'";';
                         }
 
-                        require '/var/www/classes/Riddle.class.php';
+                        require 'Riddle.class.php';
                         $riddle = new Riddle();
 
                         if($riddle->getLatestSolved() == 0){
@@ -2693,7 +2693,7 @@ if($xpDisable){
                             break;
                         case 50:
                         
-                            require '/var/www/classes/Storyline.class.php';
+                            require 'Storyline.class.php';
                             $storyline = new Storyline();
 
                             $storyline->safenet_list();
@@ -2701,7 +2701,7 @@ if($xpDisable){
                             break;
                         case 51:
                             
-                            require '/var/www/classes/Storyline.class.php';
+                            require 'Storyline.class.php';
                             $storyline = new Storyline();
 
                             $storyline->fbi_list();
@@ -3656,7 +3656,7 @@ if($bankAcc == ''){
         $total = sizeof($important);        
         
         if($total == 15){
-            require '/var/www/classes/Social.class.php';
+            require 'Social.class.php';
             $social = new Social();
             $social->badge_add(53, $_SESSION['id']);
         }
@@ -3904,7 +3904,7 @@ if($bankAcc == ''){
 
                 if ($this->session->issetMissionSession()) {
 
-                    require '/var/www/classes/Mission.class.php';
+                    require 'Mission.class.php';
                     $this->mission = new Mission();
 
                     if ($this->mission->issetMission($_SESSION['MISSION_ID'])) {
@@ -3938,7 +3938,7 @@ if($bankAcc == ''){
                 
                 $this->session->exp_add('TRANSFER', Array($amount));                               
                 
-                require_once '/var/www/classes/Storyline.class.php';
+                require_once 'Storyline.class.php';
                 $storyline = new Storyline();
 
                 if($amount > 10000){

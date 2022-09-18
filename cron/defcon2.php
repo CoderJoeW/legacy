@@ -20,7 +20,7 @@
 
 $start = microtime(true);
 
-require '/var/www/classes/PDO.class.php';
+require '../classes/PDO.class.php';
 
 $pdo = PDO_DB::factory();
 
@@ -96,7 +96,7 @@ while($total > 0){
             if($victimGrant){
          
                 for($i = 0; $i < sizeof($starterArr); $i++){
-                    exec('/usr/bin/env python /var/www/python/badge_add.py user '.$starterArr[$i].' 62');
+                    exec('/usr/bin/env python /var/www/python/badge_add.py user '.$starterArr[$i].' 62'); // CHANGE TO ABSOLUTE GAME PATH
                 }
 
                 $duration = 2;

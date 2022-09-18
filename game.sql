@@ -611,31 +611,6 @@ LOCK TABLES `clan_war_history` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `debug_pagarme`
---
-
-DROP TABLE IF EXISTS `debug_pagarme`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `debug_pagarme` (
-  `debug_id` int(5) unsigned NOT NULL AUTO_INCREMENT,
-  `id` int(10) NOT NULL,
-  `post` text NOT NULL,
-  PRIMARY KEY (`debug_id`),
-  KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=481 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `debug_pagarme`
---
-
-LOCK TABLES `debug_pagarme` WRITE;
-/*!40000 ALTER TABLE `debug_pagarme` DISABLE KEYS */;
-/*!40000 ALTER TABLE `debug_pagarme` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `doom_abort`
 --
 

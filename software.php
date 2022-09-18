@@ -1,11 +1,11 @@
 <?php
 
-require '/var/www/classes/Player.class.php';
+require 'classes/Player.class.php';
 require 'config.php';
-require '/var/www/classes/Session.class.php';
-require '/var/www/classes/PC.class.php';
-require '/var/www/classes/System.class.php';
-require '/var/www/classes/Process.class.php';
+require 'classes/Session.class.php';
+require 'classes/PC.class.php';
+require 'classes/System.class.php';
+require 'classes/Process.class.php';
 
 $session = new Session();
 $system = new System();
@@ -441,7 +441,7 @@ if($session->issetLogin()){
                         break;
                     case 'webserver':
                         
-                        require '/var/www/classes/Internet.class.php';
+                        require 'classes/Internet.class.php';
                         $internet = new Internet();
                         
                         $internet->webserver_showPage();

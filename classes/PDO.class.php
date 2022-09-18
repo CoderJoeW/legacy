@@ -3,10 +3,10 @@
 class PDO_DB {
 
     public $dbh; 
-    private static $dsn1  = 'mysql:unix_socket=';
-    private static $dsn2  = ';port=3306;dbname=game';
-    private static $user = 'he'; 
-    private static $pass = 'REDCATED'; 
+    private static $dsn1  = 'mysql:host='+$_ENV['DB_HOST'];
+    private static $dsn2  = ';port=3306;dbname='+$_ENV['DB_NAME'];
+    private static $user = $_ENV['DB_USER']; 
+    private static $pass = $_ENV['DB_PASS']; 
     private static $dbOptions = array(
         //PDO::ATTR_PERSISTENT => true,
         PDO::ATTR_CASE => PDO::CASE_LOWER,
@@ -16,10 +16,10 @@ class PDO_DB {
     public static function factory() { 
         
         //$sock = '/var/run/mysql/mysql.sock'; //localhost
-        $sock = '/var/lib/mysql/mysql.sock';
+        // $sock = '/var/lib/mysql/mysql.sock';
             
         if(!isset(self::$dbh)){
-            $dbh = new PDO(self::$dsn1.$sock.self::$dsn2,self::$user,self::$pass, self::$dbOptions); 
+            $dbh = new PDO(self::$dsn1.self::$dsn2,self::$user,self::$pass, self::$dbOptions); 
         }
         return $dbh;
     }

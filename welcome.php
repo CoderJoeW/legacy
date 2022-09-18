@@ -1,12 +1,12 @@
 <?php
-require '/var/www/classes/System.class.php';
-require '/var/www/classes/Session.class.php';
-//require '/var/www/classes/Player.class.php';
+require 'classes/System.class.php';
+require 'classes/Session.class.php';
+//require 'classes/Player.class.php';
 
 $session = new Session();
 $system = new System();
 
-require '/var/www/classes/EmailVerification.class.php';
+require 'classes/EmailVerification.class.php';
 $emailVerification = new EmailVerification();
 
 if($_SERVER['REQUEST_METHOD'] != 'POST' && !isset($_GET['code'])){
@@ -40,10 +40,6 @@ if($_SERVER['REQUEST_METHOD'] != 'POST' && !isset($_GET['code'])){
     ?>
 
     <!DOCTYPE html>
-    <!--
-        Hello, is it me you're looking for?
-        www.renatomassaro.com
-    -->
     <html lang="en">
         <head>
             <meta charset="utf-8">
@@ -80,10 +76,6 @@ if($_SERVER['REQUEST_METHOD'] != 'POST' && !isset($_GET['code'])){
             <script src="js/jquery.min.js"></script>
             <script src="js/welcome.js"></script>
         </body>
-    <!--
-        Hello! I've just got to let you know.
-        www.neoartgames.com
-    -->
     </html>
 
 <?php
@@ -109,7 +101,7 @@ if($_SERVER['REQUEST_METHOD'] != 'POST' && !isset($_GET['code'])){
             die("Ops. This code is not valid. Please verify the link on your email or <a href=\"index.php\">login</a> and enter it manually.");
         } else {
             
-            require '/var/www/classes/Database.class.php';
+            require 'classes/Database.class.php';
             $database = new LRSys();
             $player = new Player();
             

@@ -106,7 +106,7 @@ if(isset($_POST['ttuser']) || isset($_POST['predefined'])){
         
         if(!$error){
 
-            require '/var/www/classes/Python.class.php';
+            require '../classes/Python.class.php';
             $python = new Python();
 
             $gameIP1 = rand(0, 255);
@@ -118,20 +118,15 @@ if(isset($_POST['ttuser']) || isset($_POST['predefined'])){
 
             $python->createUser($name, 0, 0, $gameIP, $userID, 'twitter');
             
-            require '/var/www/classes/Forum.class.php';
-            $forum = new Forum();
-            
             $sql = 'SELECT COUNT(*) AS total, id FROM users WHERE login = \''.$name.'\' LIMIT 1';
             $regInfo = $pdo->query($sql)->fetch(PDO::FETCH_OBJ);
 
             if($regInfo->total == 1){
 
-                require '/var/www/classes/Finances.class.php';
+                require '../classes/Finances.class.php';
                 $finances = new Finances();
 
                 $finances->createAccount($regInfo->id);
-                
-                $forum->externalRegister($name, 'special_tt', 'twitter_login', $regInfo->id);
 
                 unset($_SESSION['SPECIAL_ID']);
                 $_SESSION['TTLOGIN'] = TRUE;
@@ -154,10 +149,6 @@ if(isset($_POST['ttuser']) || isset($_POST['predefined'])){
 
 ?>
 <!DOCTYPE html>
-<!--
-    Hello, is it me you're looking for?
-    www.renatomassaro.com
--->
 <html lang="en">
     <head>
         <meta charset="utf-8">

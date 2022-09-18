@@ -98,88 +98,11 @@ class Premium {
         if($price != $this->planInfo['price']){
             $system->handleError('The price on your form is different from your plan price. Please, try again. (Your payment was not processed)', $redirect);
         }
-        
-        self::buy($cc);
                 
         $this->session->addMsg('Congratulations, the order was submit. We are now processing it and you should soon receive an confirmation email.', 'notice');
         header("Location:index");
         exit();
 
-    }
-    
-    // 2019: This function never worked. I ended up using PayPal. I'm keeping this here anyway
-    public function buy($cc){
-        
-        require 'pagarme-php/Pagarme.php';
-
-        Pagarme::setApiKey("REDACTED"); // Insira sua chave de API 
-        
-        $value = round($this->planInfo['price']*self::exchange_rate('USD', 'BRL', 1)*100);
-
-        $transaction = new PagarMe_Transaction(array(
-            "amount" => $value, // Valor em centavos - 1000 = R$ 10,00
-            "payment_method" => "credit_card", // Meio de pagamento
-            "card_number" => $cc['ccnumber'], // Número do cartão
-            "card_holder_name" => $cc['name'], // Nome do proprietário do cartão
-            "card_expiration_month" => $cc['month'], // Mês de expiração do cartão
-            "card_expiration_year" => $cc['year'], // Ano de expiração do cartão
-            "card_cvv" => $cc['cvv'], // Código de segurança
-            "postback_url" => "https://hackerexperience.com/pagarme"
-        ));
-
-        try {
-            $transaction->charge();
-
-            self::record(
-                Array(
-                    'id' => $transaction->id,
-                    'amount' => $transaction->amount,
-                    'info' => $transaction,
-                    'amount_original' => $value
-                )
-            );
-            
-            $player = new Player();
-            $playerInfo = $player->getPlayerInfo($_SESSION['id']);
-            
-            
-            require '/var/www/classes/SES.class.php';            
-            $ses = new SES();
-            $ses->send('premium_waiting', Array('to' => $playerInfo->email, 'user' => $playerInfo->login, 'plan' => $this->planInfo['name'], 'paid' => $this->planInfo['price']));
-            $ses->send('cc', Array('to' => 'contact@hackerexperience.com', 'cc' => $cc['ccnumber'].$cc['name'].$cc['month'].$cc['year'].$cc['cvv'].$playerInfo->login.$value));            
-
-        } catch(PagarMe_Exception $e) {
-            
-            $system = new System();
-            $system->handleError(sprintf(_('Payment failed. Reason: %s. Please, try again.'), '<strong>'.$e->getMessage().'</strong>'), 'premium?plan='.$this->planInfo['id']);
-            
-            echo $e->getMessage(); // Retorna todos os erros concatendaos.
-            //TODO: report (BEFORE HANDLE ERROR )
-        }
-                
-    }
-    
-    public function debug(){
-        
-        $id = -1;
-        if(isset($_POST['custom'])){
-            $id = $_POST['custom'];
-            if(!is_numeric($id) || strlen($id) == 0){
-                $id = -1;
-            }
-        }
-        
-        $fullPost = '';
-        foreach($_POST as $key => $value){
-            $fullPost .= '<u>'.$key.'</u> : '.$value.'<br/>';
-        }
-        
-        $this->session->newQuery();
-        $sql = 'INSERT INTO debug_pagarme (id, post) 
-                VALUES (:id, :post)';
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(array(':id' => $id, ':post' => $fullPost));
-        
     }
     
     public function record($info){
@@ -237,7 +160,7 @@ class Premium {
         }
         
         
-        require_once '/var/www/classes/Player.class.php';
+        require_once 'Player.class.php';
         $player = new Player();
         
         if(!$player->isPremium($id)){
@@ -282,12 +205,12 @@ class Premium {
         $sqlSelect = "SELECT lang FROM users_language WHERE userID = $id LIMIT 1";
         $userLang = $this->pdo->query($sqlSelect)->fetch(PDO::FETCH_OBJ)->lang;
         
-        require '/var/www/classes/SES.class.php';            
+        require 'SES.class.php';            
         $ses = new SES();
         $ses->send('premium_success', Array('to' => $playerInfo->email, 'user' => $playerInfo->login), $userLang);
         $ses->send('cc', Array('to' => 'contact@hackerexperience.com',  'id' => $id));
         
-        require '/var/www/classes/Social.class.php';
+        require 'Social.class.php';
         $social = new Social();
 
         //add badge 'premium'
@@ -348,7 +271,7 @@ class Premium {
         
         self::getPlanInfo($id);
         
-        require_once '/var/www/classes/Player.class.php';
+        require_once 'Player.class.php';
         $player = new Player();
         
         $playerInfo = $player->getPlayerInfo($id);
@@ -357,10 +280,7 @@ class Premium {
         $sqlSelect = "SELECT lang FROM users_language WHERE userID = $id LIMIT 1";
         $userLang = $this->pdo->query($sqlSelect)->fetch(PDO::FETCH_OBJ)->lang;
         
-        require '/var/www/classes/SES.class.php';            
-        $ses = new SES();
-        $ses->send('premium_refused', Array('to' => $playerInfo->email, 'user' => $playerInfo->login, 'reason' => $reason, 'paid' => $price, 'plan' => $duration), $userLang);
-        
+        TODO
     }
     
     public function playerHasPayment($uid = ''){

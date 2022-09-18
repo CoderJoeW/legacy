@@ -136,7 +136,7 @@ class Forum {
                 $postTitle .= '...';
             }
             
-            require_once '/var/www/classes/Purifier.class.php';
+            require_once 'Purifier.class.php';
             $purifier = new Purifier();
             $purifier->set_config('text');
                     

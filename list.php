@@ -1,13 +1,13 @@
 <?php
 
-require '/var/www/classes/Session.class.php';
+require 'classes/Session.class.php';
 require 'config.php';
-require '/var/www/classes/System.class.php';
-require '/var/www/classes/Player.class.php';
-require '/var/www/classes/PC.class.php';
-require '/var/www/classes/List.class.php';
-require_once '/var/www/classes/Finances.class.php';
-require_once '/var/www/classes/Ranking.class.php';
+require 'classes/System.class.php';
+require 'classes/Player.class.php';
+require 'classes/PC.class.php';
+require 'classes/List.class.php';
+require_once 'classes/Finances.class.php';
+require_once 'classes/Ranking.class.php';
 
 $session = new Session();
 $system = new System();

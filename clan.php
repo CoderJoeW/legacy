@@ -1,11 +1,11 @@
 <?php
 
 require 'config.php';
-require '/var/www/classes/Session.class.php';
-require '/var/www/classes/Player.class.php';
-require '/var/www/classes/Mission.class.php';
-require '/var/www/classes/System.class.php';
-require '/var/www/classes/Clan.class.php';
+require 'classes/Session.class.php';
+require 'classes/Player.class.php';
+require 'classes/Mission.class.php';
+require 'classes/System.class.php';
+require 'classes/Clan.class.php';
 
 
 $session = new Session();

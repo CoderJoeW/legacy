@@ -13,11 +13,11 @@ class Lists {
 
     function __construct(){
 
-        require_once '/var/www/classes/Player.class.php';
-        require_once '/var/www/classes/Pagination.class.php';
-        require_once '/var/www/classes/PC.class.php';
-        require_once '/var/www/classes/Process.class.php';
-        require_once '/var/www/classes/Finances.class.php';
+        require_once 'Player.class.php';
+        require_once 'Pagination.class.php';
+        require_once 'PC.class.php';
+        require_once 'Process.class.php';
+        require_once 'Finances.class.php';
 
         $this->pdo = PDO_DB::factory();
         $this->player = new Player();

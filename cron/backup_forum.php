@@ -1,5 +1,8 @@
 <?php
 
+// TODO REIMPLEMENT BACKUPS
+
+/*
 require '/var/www/ses/aws-autoloader.php';
 
 use Aws\S3\S3Client;
@@ -28,6 +31,6 @@ $result = $client->putObject(array(
     'Key'    => '/'.date('Y').'/'.date('m').'/'.date('d').'/'.date('Ymd-Hi').'_forum',
     'SourceFile' => '/var/web/backup/forum/'.$name.'.sql'
 ));
-
+*/
 
 ?>

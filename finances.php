@@ -1,8 +1,8 @@
 <?php
 
 require 'config.php';
-require '/var/www/classes/Session.class.php';
-require '/var/www/classes/Finances.class.php';
+require 'classes/Session.class.php';
+require 'classes/Finances.class.php';
 
 $session = new Session();
 

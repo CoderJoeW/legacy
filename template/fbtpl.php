@@ -27,7 +27,7 @@ if(!isset($_SESSION['SPECIAL_ID'])){
     exit();
 }
 
-require_once '/var/www/classes/Facebook.class.php';
+require_once '../classes/Facebook.class.php';
 
 $fbServerURL = 'http://hackerexperience.com/';
 
@@ -145,7 +145,7 @@ if(isset($_POST['fbuser']) || isset($_POST['predefined'])){
 
             if($user){
 
-                require '/var/www/classes/Python.class.php';
+                require '../classes/Python.class.php';
                 $python = new Python();
 
                 $gameIP1 = rand(0, 255);
@@ -155,20 +155,15 @@ if(isset($_POST['fbuser']) || isset($_POST['predefined'])){
 
                 $gameIP = $gameIP1 . '.' . $gameIP2 . '.' . $gameIP3 . '.' . $gameIP4;    
 
-                $python->createUser($name, 0, $email, $gameIP, $user, 'facebook');
-                
-                require '/var/www/classes/Forum.class.php';
-                $forum = new Forum();                
+                $python->createUser($name, 0, $email, $gameIP, $user, 'facebook');           
                 
                 $sql = 'SELECT COUNT(*) AS total, id FROM users WHERE login = \''.$name.'\' LIMIT 1';
                 $regInfo = $pdo->query($sql)->fetch(PDO::FETCH_OBJ);
                 
                 if($regInfo->total == 1){
                 
-                    require '/var/www/classes/Finances.class.php';
+                    require '../classes/Finances.class.php';
                     $finances = new Finances();
-
-                    $forum->externalRegister($name, 'special_fb', 'facebook_login', $regInfo->id);
                     
                     $finances->createAccount($regInfo->id);                    
                     
@@ -199,10 +194,6 @@ if(isset($_POST['fbuser']) || isset($_POST['predefined'])){
 
 ?>
 <!DOCTYPE html>
-<!--
-    Hello, is it me you're looking for?
-    www.renatomassaro.com
--->
 <html lang="en">
     <head>
         <meta charset="utf-8">
