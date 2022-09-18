@@ -27,8 +27,8 @@ bind_textdomain_codeset($domain, 'UTF-8');
 
 textdomain($domain);
 
-require_once 'twitter/twitteroauth.php';
-require_once '../classes/Facebook.class.php';
+//require_once 'twitter/twitteroauth.php';
+//require_once '../classes/Facebook.class.php';
 
 switch($fbServerURL){
     case 'http://hackerexperience.com/':
@@ -57,8 +57,8 @@ $facebookURL = $facebook->getLoginUrl(Array(
     'redirect_uri' => $fbServerURL
 ));
 
-$twitteroauth = new TwitterOAuth('REDACTED', 'REDACTED');
-$twitteroauth->host = "https://api.twitter.com/1.1/";
+//$twitteroauth = new TwitterOAuth('REDACTED', 'REDACTED');
+//$twitteroauth->host = "https://api.twitter.com/1.1/";
 
 //if($_SERVER['HTTP_HOST'] == 'www.hackerexperience.com' || $_SERVER['HTTP_HOST'] == 'hackerexperience.com'){
 //    $url = 'http://hackerexperience.com/';
@@ -67,11 +67,11 @@ $twitteroauth->host = "https://api.twitter.com/1.1/";
 //}
 $url = 'http://hackerexperience.com/';
 
-$request_token = $twitteroauth->getRequestToken($url);
+//$request_token = $twitteroauth->getRequestToken($url);
 
 $twitterURL = '';
 
-if($request_token){
+/*if($request_token){
 
     $_SESSION['oauth_token'] = $request_token['oauth_token'];
     $_SESSION['oauth_token_secret'] = $request_token['oauth_token_secret'];
@@ -86,7 +86,7 @@ if($request_token){
 } elseif($url == 'http://hackerexperience.com/'){
     //echo 'Error while connecting to twitter';
     //TODO: report instead of echo
-}
+}*/
 
 $script = $msgRegister = $msgLogin = $msgIndex = FALSE;
 
