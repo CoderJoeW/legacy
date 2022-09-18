@@ -1,0 +1,29 @@
+{
+    "name": "hackerexperience/legacy",
+    "description": "Some description",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Someonme",
+            "email": "someone@questblue.com"
+        },
+        {
+            "name": "Another one",
+            "email": "djkhaled@questblue.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "HE\\": "src/Application/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "predis/predis": "v1.1.x-dev",
+        "cboden/ratchet": "^0.4",
+        "devster/ubench": "^2.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.5"
+    }
+}
