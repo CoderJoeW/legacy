@@ -1,3 +1,4 @@
 forum/cache/*
 /wiki/conf/*
 .idea/*
+.vscode/*
