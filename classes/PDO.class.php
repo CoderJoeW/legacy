@@ -3,10 +3,10 @@
 class PDO_DB {
 
     public $dbh; 
-    private static $dsn1  = 'mysql:host='+$_ENV['DB_HOST'];
-    private static $dsn2  = ';port=3306;dbname='+$_ENV['DB_NAME'];
-    private static $user = $_ENV['DB_USER']; 
-    private static $pass = $_ENV['DB_PASS']; 
+    private static $dsn1  = 'mysql:host=localhost';
+    private static $dsn2  = ';port=3306;dbname=HackerExperience';
+    private static $user = 'he'; 
+    private static $pass = 'supersecurepass'; 
     private static $dbOptions = array(
         //PDO::ATTR_PERSISTENT => true,
         PDO::ATTR_CASE => PDO::CASE_LOWER,
