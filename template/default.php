@@ -329,7 +329,7 @@ if($msgRegister){
 <?php
 }
 ?>
-                        <form class="form-horizontal" id="signup-form" action="register" method="POST">
+                        <form class="form-horizontal" id="signup-form" action="register.php" method="POST">
                             <fieldset class="signup">
                                 <br/>
                                 <div class="form-group">
