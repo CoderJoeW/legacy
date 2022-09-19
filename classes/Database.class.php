@@ -1,5 +1,7 @@
 <?php
 
+use HE\Database\PDO\Model;
+
 class LRSys {
 
     public $name;
@@ -47,15 +49,17 @@ class LRSys {
     }
 
     public function register($regUser, $regPass, $regMail) {
+        $db = Model::getInstance('localhost');
 
         $this->user = $regUser;
         $this->pass = $regPass;
         $this->email = $regMail;
 
-        $sql = 'SELECT COUNT(*) AS total FROM stats_register WHERE ip = :ip AND TIMESTAMPDIFF(MINUTE, registrationDate, NOW()) < 10';
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(array(':ip' => $_SERVER['REMOTE_ADDR']));
-        $spamCheck = $stmt->fetch(PDO::FETCH_OBJ)->total; 
+        $params = [
+            'ip' => $_SERVER['REMOTE_ADDR']
+        ];
+
+        $spamCheck = $db->select('SELECT Count(*) AS total FROM stats_register WHERE ip=:ip AND TIMESTAMPDIFF(MINUTEm registrationDate, NOW()) < 10', $params)[0];
 
         if($spamCheck >= 1){
             exit('IP blocked for multiple registrations. Try again in 10 minutes.');
