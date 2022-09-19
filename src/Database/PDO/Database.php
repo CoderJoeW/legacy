@@ -19,7 +19,7 @@ class Database{
 		try{
 			$this->connection = new PDO("$connectionType:host=$host;port=3306;dbname=$dbName;charset=utf8mb4",$username,$password);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
+            $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
             $this->connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		}catch(PDOException $e){
 			echo $e->getMessage();
