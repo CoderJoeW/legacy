@@ -2,3 +2,5 @@ forum/cache/*
 /wiki/conf/*
 .idea/*
 .vscode/*
+vendor/*
+composer.lock
