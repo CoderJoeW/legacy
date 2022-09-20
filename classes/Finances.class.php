@@ -1,5 +1,9 @@
 <?php
 
+require_once('/var/www/hackerexperience/config.php');
+
+use HE\Database\PDO\Model;
+
 class Finances {
     
     private $pdo;
@@ -636,6 +640,7 @@ class Finances {
     }
     
     public function createAccount($userID, $bankID = ''){
+        $db = Model::getInstance('localhost');
         
         if($bankID == ''){
             $bankID = self::getFirstBankID();
@@ -654,12 +659,18 @@ class Finances {
         
         $acc = rand(111111111,999999999);
         $pass = randString(6);
+
+        $params = [
+            'bankAcc' => $acc,
+            'bankPass' => $pass,
+            'bankID' => $bankID,
+            'bankUser' => $userID,
+            'cash' => '0'
+        ];
+
+        $db->insert("INSERT INTO bankAccounts SET {$db->createParameterString($params)}", $params);
         
         $this->session->newQuery();
-        $sql = 'INSERT INTO bankAccounts (id, bankAcc, bankPass, bankID, bankUser, cash) 
-                VALUES (\'\', :acc, :passInfo, :deepInfo, :SESSION, \'0\')';
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(array(':acc' => $acc, ':passInfo' => $pass, ':deepInfo' => $bankID, ':SESSION' => $userID));
 
     }
     
