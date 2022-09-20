@@ -1,5 +1,7 @@
 <?php
 
+require_once(__DIR__ . '/vendor/autoload.php');
+
 $wikiPath = 'http://localhost/wiki/';
 
 $version = '0.8';
