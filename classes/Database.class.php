@@ -1,5 +1,7 @@
 <?php
 
+require_once('/var/www/hackerexperience/config.php');
+
 use HE\Database\PDO\Model;
 
 class LRSys {
@@ -59,9 +61,9 @@ class LRSys {
             'ip' => $_SERVER['REMOTE_ADDR']
         ];
 
-        $spamCheck = $db->select('SELECT Count(*) AS total FROM stats_register WHERE ip=:ip AND TIMESTAMPDIFF(MINUTEm registrationDate, NOW()) < 10', $params)[0];
+        $spamCheck = $db->select('SELECT Count(*) AS total FROM stats_register WHERE ip=:ip AND TIMESTAMPDIFF(MINUTE, registrationDate, NOW()) < 10', $params)[0];
 
-        if($spamCheck >= 1){
+        if($spamCheck->total >= 1){
             exit('IP blocked for multiple registrations. Try again in 10 minutes.');
         }
 
@@ -79,15 +81,54 @@ class LRSys {
 
             $gameIP = $gameIP1 . '.' . $gameIP2 . '.' . $gameIP3 . '.' . $gameIP4;
 
-            require 'Python.class.php';
-            
-            $python = new Python();
-            $python->createUser($this->user, $hash, $this->email, $gameIP);
+            $params = [
+                'login' => $this->user,
+                'password' => $hash,
+                'gamePass' => 'somerandomgeneratedpass', //TODO
+                'email' => $this->email,
+                'gameIP' => $gameIP
+            ];
 
-            $sql = 'SELECT COUNT(*) AS total, id FROM users WHERE login = :user LIMIT 1';
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(array(':user' => $this->user));
-            $regInfo = $stmt->fetch(PDO::FETCH_OBJ); 
+            $userId = $db->insert("INSERT INTO users SET {$db->createParameterString($params)}", $params);
+
+            $params = [ 'uid' => $userId, 'dateJoined' => time()];
+            $db->insert("INSERT INTO users_stats {$db->createParameterString($params)}", $params);
+
+            $params = ['userID' => $userId, 'name' => 'Server #1'];
+            $db->insert("INSERT INTO hardware {$db->createParameterString($params)}", $params);
+
+            $params = ['userID' => $userId, 'text' => 'bruh idek what the author intended here'];
+            $db->insert("INSERT INTO log {$db->createParameterString($params)}", $params);
+
+            $params = ['userID' => $userId];
+            $db->insert("INSERT INTO cache {$db->createParameterString($params)}", $params);
+
+            $params = ['userID' => $userId, 'expireCache' => time()];
+            $db->insert("INSERT INTO cache_profile {$db->createParameterString($params)}", $params);
+
+            $params = ['userID' => $userId];
+            $db->insert("INSERT INTO hist_users_current {$db->createParameterString($params)}", $params);
+
+            $params = ['userID' => $userId, 'rank' => '-1'];
+            $db->insert("INSERT INTO ranking_user {$db->createParameterString($params)}", $params);
+
+            $params = ['userID' => $userId];
+            $db->insert("INSERT INTO certifications {$db->createParameterString($params)}", $params);
+
+            $params = ['userID' => $userId];
+            $db->insert("INSERT INTO users_puzzle {$db->createParameterString($params)}", $params);
+
+            $params = ['userID' => $userId];
+            $db->insert("INSERT INTO users_learning {$db->createParameterString($params)}", $params);
+
+            $params = ['userID' => $userId];
+            $db->insert("INSERT INTO users_language {$db->createParameterString($params)}", $params);
+
+            $params = [
+                'user' => $this->user
+            ];
+
+            $regInfo = $db->select('SELECT Count(*) AS total, id FROM users WHERE login=:user LIMIT 1', $params)[0];
             
             if($regInfo->total == 0){
                 $this->session->addMsg('Error while completing registration. Please, try again later.', 'error');
@@ -107,9 +148,13 @@ class LRSys {
             $finances = new Finances();
             
             $finances->createAccount($regInfo->id);
-            
-            $sql = "INSERT INTO stats_register (userID, ip) VALUES ('".$regInfo->id."', '".$_SERVER['REMOTE_ADDR']."')";
-            $this->pdo->query($sql);
+
+            $params = [
+                'userID' => $regInfo->id,
+                'ip' => $_SERVER['REMOTE_ADDR']
+            ];
+
+            $db->insert("INSERT INTO stats_register SET {$db->createParameterString($params)}", $params);
 
             $this->session->addMsg('Registration complete. You can login now.', 'notice');
 
@@ -122,6 +167,7 @@ class LRSys {
     }
 
     private function verifyRegister() {
+        $db = Model::getInstance('localhost');
 
         $system = new System();
         
@@ -150,17 +196,19 @@ class LRSys {
         
         
         
-        //verifico no banco se já existe um usuário ou email cadastrado.
+        //I check in the bank if there is already a registered user or email.
         $this->session->newQuery();
-        $sqlQuery = "SELECT email FROM users WHERE login = ? OR email = ? LIMIT 1";
-        $sqlLog = $this->pdo->prepare($sqlQuery);
-        $sqlLog->execute(array($this->user, $this->email));
 
-        if ($sqlLog->rowCount() == '1') {
+        $params = [
+            'login' => $this->user,
+            'email' => $this->email
+        ];
 
-            $dados = $sqlLog->fetch();
+        $results = $db->select('SELECT email FROM users WHERE login=:login OR email=:email LIMIT 1', $params);
 
-            if ($dados['email'] == $this->email) {
+        if (count($results) > 0) {
+
+            if ($results[0]->email == $this->email) {
                 $this->session->addMsg('This email is already used.', 'error');
             } else {
                 $this->session->addMsg('This username is already taken.', 'error');

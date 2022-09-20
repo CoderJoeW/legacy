@@ -12,7 +12,7 @@ class Python {
     function __construct(){
         
         $this->python_path = '/usr/bin/env python';
-        $this->game_path = '/var/www/'; // CHANGE TO YOUR ABSOLUTE GAME PATH
+        $this->game_path = '/var/www/hackerexperience'; // CHANGE TO YOUR ABSOLUTE GAME PATH
         $this->args = '';
         $this->log = ' 2>&1 /var/log/game/python.log';
         
@@ -44,17 +44,6 @@ class Python {
 
         self::call();
 
-    }
-    
-    public function createUser($username, $password, $email, $ip, $facebook = 0, $social_network = ''){
-        
-        $this->path = 'python/';
-        $this->file = 'create_user.py';
-        $this->args = escapeshellarg($username).' \''.$password.'\' '.escapeshellarg($email).' '.escapeshellarg($ip).' '.escapeshellarg($facebook).' '.escapeshellarg($social_network);
-        $this->queries = 10;
-
-        self::call();        
-        
     }
     
     private function call(){

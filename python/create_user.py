@@ -22,71 +22,13 @@ cur = False
 
 try:
 
-	db = MySQLdb.connect(host="localhost",user="he",passwd="REDACTED",db="game")
+	db = MySQLdb.connect(host="localhost",user="he",passwd="supersecurepass",db="HackerExperience")
 	cur = db.cursor()
 
-	cur.execute("	INSERT INTO users \
-						(login, password, gamePass, email, gameIP) \
-					VALUES \
-						(%s, %s, %s, %s, INET_ATON(%s))", (user, hashedPass, pwd_generator(), email, gameIP))
-
-	userID = str(db.insert_id())
-
-	cur.execute("	INSERT INTO users_stats \
-						(uid, dateJoined) \
-					VALUES \
-						("+userID+", NOW()); \
-				")
-	cur.execute("	INSERT INTO hardware \
-						(userID, name) \
-					VALUES \
-						("+userID+", 'Server #1') \
-				")
-	cur.execute("	INSERT INTO log \
-						(userID, log.text) \
-					VALUES \
-						("+userID+", CONCAT(SUBSTRING(NOW(), 1, 16), ' - localhost installed current operating system')) \
-				")
-	cur.execute("	INSERT INTO cache\
-						(userID) \
-					VALUES \
-						("+userID+") \
-				")
-	cur.execute("	INSERT INTO cache_profile \
-						(userID, expireDate) \
-					VALUES \
-						("+userID+", NOW()) \
-				")
-	cur.execute("	INSERT INTO hist_users_current \
-						(userID) \
-					VALUES \
-						("+userID+") \
-				")
-	cur.execute("	INSERT INTO ranking_user \
-						(userID, rank) \
-					VALUES \
-						("+userID+", '-1') \
-				")
-	cur.execute("	INSERT INTO certifications \
-						(userID) \
-					VALUES \
-						("+userID+") \
-				")	
-	cur.execute("	INSERT INTO users_puzzle \
-						(userID) \
-					VALUES \
-						("+userID+") \
-				")	
-	cur.execute("	INSERT INTO users_learning \
-						(userID) \
-					VALUES \
-						("+userID+") \
-				")
-	cur.execute("	INSERT INTO users_language \
-						(userID) \
-					VALUES \
-						("+userID+") \
-				")
+	
+	
+	
+	
 
 	if int(externalID) > 0:
 
